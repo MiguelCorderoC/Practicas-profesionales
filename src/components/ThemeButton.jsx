@@ -25,7 +25,7 @@ function ThemeButton() {
   return (
     <>
       <button
-        className="bg-gray-50 p-1 rounded-lg shadow border transition duration-300 dark:text-white dark:bg-gray-800 dark:border-gray-700"
+        className="bg-gray-50 p-1 rounded-lg shadow border dark:text-white dark:bg-gray-800 dark:border-gray-700"
         onClick={handleTheme}
       >
         {theme === "light" ? <FaMoon /> : <MdSunny />}
