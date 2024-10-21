@@ -10,11 +10,24 @@ import { VscPreview } from "react-icons/vsc";
 
 import { useState } from "react";
 import ThemeButton from "./ThemeButton";
+import { useAuth } from "../context/AuthContext";
+import { toast } from "sonner";
 
 function SideBar() {
   const [dropReportes, setDropReportes] = useState(false);
   const [dropCatalogos, setDropCatalogos] = useState(false);
   const [dropUser, setDropUser] = useState(false);
+  const auth = useAuth();
+
+  const handleLogOut = async () => {
+    try {
+      await auth.logOut();
+      toast.success("Sesion cerrada");
+    } catch (error) {
+      console.error(error);
+      toast.error("Error al cerrar sesion");
+    }
+  };
   return (
     <>
       <aside className="h-screen w-[200px] border-r dark:bg-gray-800 dark:text-gray-200">
@@ -106,7 +119,10 @@ function SideBar() {
                   </Link>
                 </li>
                 <li className="block">
-                  <button className="flex w-full items-center gap-2 py-2 dark:hover:bg-gray-700 hover:bg-gray-300 rounded">
+                  <button
+                    onClick={handleLogOut}
+                    className="flex w-full items-center gap-2 py-2 dark:hover:bg-gray-700 hover:bg-gray-300 rounded"
+                  >
                     <CiLogout /> Cerrar sesion
                   </button>
                 </li>
