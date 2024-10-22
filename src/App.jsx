@@ -5,6 +5,7 @@ import { Toaster } from "sonner";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ResetPasswordView from "./views/auth/ResetPasswordView";
+import UpdateProfile from "./views/auth/UpdateProfileView";
 
 function App() {
   return (
@@ -22,6 +23,14 @@ function App() {
           />
           <Route path="/login" element={<LogInView />} />
           <Route path="/reset-password" element={<ResetPasswordView />} />
+          <Route
+            path="/update-profile"
+            element={
+              <ProtectedRoute>
+                <UpdateProfile />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </AuthProvider>
     </>

@@ -19,6 +19,8 @@ function SideBar() {
   const [dropUser, setDropUser] = useState(false);
   const auth = useAuth();
 
+  const { email, displayName, photoURL } = auth.user || {};
+
   const handleLogOut = async () => {
     try {
       await auth.logOut();
@@ -30,7 +32,7 @@ function SideBar() {
   };
   return (
     <>
-      <aside className="h-screen w-[200px] border-r dark:bg-gray-800 dark:text-gray-200">
+      <aside className="fixed h-screen w-[200px] border-r dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200">
         <nav className="h-full flex flex-col justify-between">
           <ul className="flex flex-col gap-2">
             <li>
@@ -65,7 +67,7 @@ function SideBar() {
             <li>
               <button
                 onClick={() => setDropCatalogos((prev) => !prev)}
-                className="flex items-center"
+                className="flex items-center w-full"
               >
                 <MdChevronRight
                   className={`text-3xl font-bold text-gray-500 transition-all duration-300 ${
@@ -102,9 +104,9 @@ function SideBar() {
               <ul className="border rounded p-2 bg-gray-200 text-sm font-semibold dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800">
                 <li>
                   <article className="border-b-2 border-gray-400 pb-1">
-                    <span>Miguel Cordero</span>
+                    <span>{displayName}</span>
                     <br />
-                    <span>lavanderiamiguel12@gmail.com</span>
+                    <span>{email}</span>
                   </article>
                 </li>
                 <li className="block">
@@ -114,7 +116,10 @@ function SideBar() {
                   </Link>
                 </li>
                 <li className="block">
-                  <Link className="flex items-center gap-2 py-2 dark:hover:bg-gray-700 hover:bg-gray-300 rounded">
+                  <Link
+                    to={"/update-profile"}
+                    className="flex items-center gap-2 py-2 dark:hover:bg-gray-700 hover:bg-gray-300 rounded"
+                  >
                     <IoSettingsOutline /> Configurar perfil
                   </Link>
                 </li>
@@ -134,12 +139,11 @@ function SideBar() {
                 className="flex items-center gap-1"
               >
                 <img
-                  src="https://i.pinimg.com/originals/3c/ac/23/3cac238d735ec8b3ac2de2f07b133da2.png"
+                  src={photoURL}
                   alt="Foto de usuario"
-                  className="size-10"
+                  className="size-10 rounded-full"
                 />
-
-                <span className="font-semibold text-sm">Miguel Cordero</span>
+                <span className="font-semibold text-sm">{displayName}</span>
               </button>
             </article>
             <ThemeButton />
