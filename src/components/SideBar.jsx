@@ -7,11 +7,11 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { GiRolledCloth } from "react-icons/gi";
 import { BsFillPersonBadgeFill } from "react-icons/bs";
 import { VscPreview } from "react-icons/vsc";
-
 import { useState } from "react";
 import ThemeButton from "./ThemeButton";
 import { useAuth } from "../context/AuthContext";
 import { toast } from "sonner";
+import imgUserDefault from "../assets/imgUserDefault.png";
 
 function SideBar() {
   const [dropReportes, setDropReportes] = useState(false);
@@ -104,17 +104,22 @@ function SideBar() {
               <ul className="border rounded p-2 bg-gray-200 text-sm font-semibold dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800">
                 <li>
                   <article className="border-b-2 border-gray-400 pb-1">
-                    <span>{displayName}</span>
+                    <span>{displayName || "Sin nombre"}</span>
                     <br />
                     <span>{email}</span>
                   </article>
                 </li>
-                <li className="block">
-                  <Link className="flex items-center gap-2 py-2 dark:hover:bg-gray-700 hover:bg-gray-300 rounded">
-                    <FaUserCircle className="font-bold text-gray-500" />
-                    Crear nuevo usuario
-                  </Link>
-                </li>
+                {email === import.meta.env.VITE_USER_ADMIN && (
+                  <li className="block">
+                    <Link
+                      to={"/signin"}
+                      className="flex items-center gap-2 py-2 dark:hover:bg-gray-700 hover:bg-gray-300 rounded"
+                    >
+                      <FaUserCircle className="font-bold text-gray-500" />
+                      Crear nuevo usuario
+                    </Link>
+                  </li>
+                )}
                 <li className="block">
                   <Link
                     to={"/update-profile"}
@@ -139,11 +144,13 @@ function SideBar() {
                 className="flex items-center gap-1"
               >
                 <img
-                  src={photoURL}
+                  src={photoURL || imgUserDefault}
                   alt="Foto de usuario"
                   className="size-10 rounded-full"
                 />
-                <span className="font-semibold text-sm">{displayName}</span>
+                <span className="font-semibold text-sm">
+                  {displayName || "Sin nombre"}
+                </span>
               </button>
             </article>
             <ThemeButton />

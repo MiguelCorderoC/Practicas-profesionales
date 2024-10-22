@@ -6,6 +6,7 @@ import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ResetPasswordView from "./views/auth/ResetPasswordView";
 import UpdateProfile from "./views/auth/UpdateProfileView";
+import SignInView from "./views/auth/SignInView";
 
 function App() {
   return (
@@ -28,6 +29,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <UpdateProfile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/signin"
+            element={
+              <ProtectedRoute>
+                <SignInView />
               </ProtectedRoute>
             }
           />

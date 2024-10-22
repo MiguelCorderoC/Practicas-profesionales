@@ -3,6 +3,7 @@ import SuccessNotification from "../../components/notifications/SuccessNotificat
 import SideBar from "../../components/SideBar";
 import { useAuth } from "../../context/AuthContext";
 import { useForm } from "react-hook-form";
+import imgUserDefault from "../../assets/imgUserDefault.png";
 
 function UpdateProfile() {
   const auth = useAuth();
@@ -32,12 +33,14 @@ function UpdateProfile() {
           <h2 className="font-semibold text-3xl pb-4">Actualizar perfil</h2>
           <article className="flex items-center gap-5 pb-2">
             <img
-              src={photoURL}
+              src={photoURL || imgUserDefault}
               alt="Foto de usuario"
               className="size-24 rounded-full"
             />
             <article>
-              <span className="font-semibold text-xl">{displayName}</span>
+              <span className="font-semibold text-xl">
+                {displayName || "Sin nombre"}
+              </span>
               <br />
               <span className="text-lg">{email}</span>
             </article>
