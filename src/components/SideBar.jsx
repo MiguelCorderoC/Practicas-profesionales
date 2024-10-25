@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MdChevronRight } from "react-icons/md";
+import { MdChevronRight, MdRealEstateAgent } from "react-icons/md";
 import { BsPencilSquare } from "react-icons/bs";
 import { CiLogout } from "react-icons/ci";
 import { FaUserCircle } from "react-icons/fa";
@@ -8,6 +8,10 @@ import { GiRolledCloth } from "react-icons/gi";
 import { BsFillPersonBadgeFill } from "react-icons/bs";
 import { VscPreview } from "react-icons/vsc";
 import { useState } from "react";
+import { MdWork } from "react-icons/md";
+import { HiCash } from "react-icons/hi";
+import { TbCoinFilled } from "react-icons/tb";
+import { BiArrowToRight } from "react-icons/bi";
 import ThemeButton from "./ThemeButton";
 import { useAuth } from "../context/AuthContext";
 import { toast } from "sonner";
@@ -30,11 +34,20 @@ function SideBar() {
       toast.error("Error al cerrar sesion");
     }
   };
+
   return (
     <>
-      <aside className="fixed h-screen w-[200px] border-r dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200">
-        <nav className="h-full flex flex-col justify-between">
+      <aside className="fixed z-20 h-screen w-[200px] border-r dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200">
+        <nav className="h-full flex flex-col justify-between pt-3">
           <ul className="flex flex-col gap-2">
+            <li>
+              <Link
+                to={"/cotizaciones"}
+                className="flex items-center gap-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 hover:text-gray-700 hover:bg-gray-200 transition duration-300 font-semibold text-base pl-8 py-1"
+              >
+                <VscPreview /> Cotizaciones
+              </Link>
+            </li>
             <li>
               <button
                 onClick={() => setDropReportes((prev) => !prev)}
@@ -53,12 +66,12 @@ function SideBar() {
                 }`}
               >
                 <li>
-                  <Link className="flex items-center gap-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 hover:text-gray-700 hover:bg-gray-200 transition duration-300 font-semibold text-base pl-8 py-1">
+                  <Link className="flex items-center gap-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-400 hover:text-gray-700 hover:bg-gray-200 transition duration-300 font-semibold text-base pl-8 py-1">
                     <BsPencilSquare /> Ordenes
                   </Link>
                 </li>
                 <li>
-                  <Link className="flex items-center gap-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 hover:text-gray-700 hover:bg-gray-200 transition duration-300 font-semibold text-base pl-8 py-1">
+                  <Link className="flex items-center gap-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-400 hover:text-gray-700 hover:bg-gray-200 transition duration-300 font-semibold text-base pl-8 py-1">
                     <VscPreview /> Cotizaciones
                   </Link>
                 </li>
@@ -82,7 +95,10 @@ function SideBar() {
                 }`}
               >
                 <li>
-                  <Link className="flex items-center gap-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 hover:text-gray-700 hover:bg-gray-200 transition duration-300 font-semibold text-base pl-8 py-1">
+                  <Link
+                    to={"/acabados"}
+                    className="flex items-center gap-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 hover:text-gray-700 hover:bg-gray-200 transition duration-300 font-semibold text-base pl-8 py-1"
+                  >
                     <GiRolledCloth /> Acabados
                   </Link>
                 </li>
@@ -90,6 +106,54 @@ function SideBar() {
                   <Link className="flex items-center gap-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 hover:text-gray-700 hover:bg-gray-200 transition duration-300 font-semibold text-base pl-8 py-1">
                     <BsFillPersonBadgeFill />
                     Clientes
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={"/estado-cobranza"}
+                    className="flex items-center gap-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 hover:text-gray-700 hover:bg-gray-200 transition duration-300 font-semibold text-base pl-8 py-1"
+                  >
+                    <MdRealEstateAgent /> Estado cobranza
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={"/tipo-trabajo"}
+                    className="flex items-center gap-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 hover:text-gray-700 hover:bg-gray-200 transition duration-300 font-semibold text-base pl-8 py-1"
+                  >
+                    <MdWork /> Tipo de trabajo
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={"/tipo-ventas"}
+                    className="flex items-center gap-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 hover:text-gray-700 hover:bg-gray-200 transition duration-300 font-semibold text-base pl-8 py-1"
+                  >
+                    <HiCash /> Tipo de venta
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={"/forma-pago"}
+                    className="flex items-center gap-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 hover:text-gray-700 hover:bg-gray-200 transition duration-300 font-semibold text-base pl-8 py-1"
+                  >
+                    <TbCoinFilled /> Forma de pago
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={"/procesos"}
+                    className="flex items-center gap-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 hover:text-gray-700 hover:bg-gray-200 transition duration-300 font-semibold text-base pl-8 py-1"
+                  >
+                    <BiArrowToRight /> Procesos
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={"/unidades"}
+                    className="flex items-center gap-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 hover:text-gray-700 hover:bg-gray-200 transition duration-300 font-semibold text-base pl-8 py-1"
+                  >
+                    <BiArrowToRight /> Unidades
                   </Link>
                 </li>
               </ul>

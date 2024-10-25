@@ -24,7 +24,9 @@ function LogInView() {
       });
     } catch (error) {
       console.error(error);
-      toast.error("Error al iniciar sesion");
+      toast.error("Usuario no autenticado", {
+        description: "Ingrese unas credenciales validas para obtener acceso",
+      });
     }
   };
 
